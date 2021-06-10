@@ -15,7 +15,7 @@ public class SumCalculator {
     public int calculation(){
         return splitString.stream()
                 .mapToInt(Integer::parseInt)
-                .reduce((a,b) -> Integer.sum(a,b))
+                .reduce(Integer::sum)
                 .getAsInt();
     }
 
