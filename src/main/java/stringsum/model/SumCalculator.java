@@ -1,22 +1,20 @@
 package stringsum.model;
 
-import stringsum.utils.StringUtils;
-
-import java.util.List;
-
 public class SumCalculator {
 
-    private List<String> splitString;
+    private SeparateString splitString;
+
 
     public SumCalculator(String inputString){
-        this.splitString = StringUtils.stringSplit(inputString);
+        this.splitString = new SeparateString(inputString);
     }
 
-    public int calculation(){
-        return splitString.stream()
-                .mapToInt(Integer::parseInt)
+    public Integer calculation(){
+        return splitString.getNumbers()
+                .getNumberList()
+                .stream()
                 .reduce(Integer::sum)
-                .getAsInt();
+                .orElse(0);
     }
 
 }
