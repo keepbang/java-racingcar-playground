@@ -1,13 +1,12 @@
 package racingcar.model;
 
 public class Car {
-    private static final int CAR_NAME_LENGTH = 5;
 
-    private String name;
+    private final String name;
     private int position;
 
     public Car(String name){
-        this.name = validStringLength(name);
+        this.name = name;
         this.position = 0;
     }
 
@@ -23,10 +22,5 @@ public class Car {
         return this.name;
     }
 
-    private String validStringLength(String carName) {
-        if(carName.length() > CAR_NAME_LENGTH){
-            throw new IllegalArgumentException("자동차의 이름이 5자를 초과합니다.");
-        }
-        return carName;
-    }
+
 }

@@ -1,53 +1,27 @@
 package racingcar.model;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Random;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {
-            "fefsdf  s"
-            ,"test123"
-            ,"kim:aa"
+    @CsvSource({
+            "bang,1,0,0,1",
+            "kim,1,1,0,2",
+            "test,0,0,0,0",
     })
-    @DisplayName("자동차 이름 검증 실패")
-    void carNameExceptionTest(String carName){
-        assertThatThrownBy(() -> new Car(carName))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자동차의 이름이 5자를 초과합니다.");
+    void carMoveTest(String carName, int move1, int move2, int move3, int position){
+        Car car = new Car(carName);
+        car.move(move1);
+        car.move(move2);
+        car.move(move3);
+        assertThat(car.getName()).isEqualTo(carName);
+        assertThat(car.getPosition()).isEqualTo(position);
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "kim"
-            ,"chae"
-            ,"A"
-            ,"test1"
-    })
-    @DisplayName("자동차 생성 성공")
-    void carNameSuccessTest(String carName){
-        assertDoesNotThrow(() -> new Car(carName));
-    }
-
-
-    @Test
-    void carMoveTest(){
-        for (int i = 0; i < 100; i++) {
-            Car car = new Car("bang");
-            car.move(new Random().nextInt(2));
-            assertThat(car.getPosition()).isLessThan(2);
-        }
-
-    }
-
 
 }

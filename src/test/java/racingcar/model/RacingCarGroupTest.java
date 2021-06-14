@@ -4,13 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-class RacingCarsTest {
+class RacingCarGroupTest {
 
     @Test
     @DisplayName("게임에 참여할 자동차 등록 실패")
@@ -18,7 +16,7 @@ class RacingCarsTest {
 
         String[] inputString = {"kim", "test", "sfefs", "lkjkjs"};
 
-        assertThatThrownBy(() -> new RacingCars(inputString))
+        assertThatThrownBy(() -> new RacingCarGroup(inputString))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차의 이름이 5자를 초과합니다.");
     }
@@ -34,21 +32,19 @@ class RacingCarsTest {
 
         String[] splitString = inputString.split(",");
 
-        RacingCars racingCars = new RacingCars(splitString);
+        RacingCarGroup racingCarGroup = new RacingCarGroup(splitString);
 
-        assertThat(racingCars.getCars().size()).isEqualTo(count);
+        assertThat(racingCarGroup.getCars().size()).isEqualTo(count);
     }
 
     @Test
     void showRacingResultTest(){
         String[] inputString = {"kim", "test", "sfefs", "lkjkj"};
 
-        RacingCars racingCars = new RacingCars(inputString);
+        RacingCarGroup racingCarGroup = new RacingCarGroup(inputString);
 
-        System.out.println(racingCars.showRacingResult());
+        racingCarGroup.play();
 
-        racingCars.play();
-
-        System.out.println(racingCars.showRacingResult());
+        System.out.println(racingCarGroup.getGroupPlayResult());
     }
 }
