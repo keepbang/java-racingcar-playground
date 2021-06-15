@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -40,11 +42,20 @@ class RacingCarGroupTest {
     @Test
     void showRacingResultTest(){
         String[] inputString = {"kim", "test", "sfefs", "lkjkj"};
+        int moveDistance = 2;
 
-        RacingCarGroup racingCarGroup = new RacingCarGroup(inputString);
+
+        RacingCarGroup racingCarGroup = new RacingCarGroup(inputString){
+            @Override
+            public void play() {
+                super.getCars().forEach(racingCar -> racingCar.move(moveDistance));
+            }
+        };
 
         racingCarGroup.play();
 
-        System.out.println(racingCarGroup.getGroupPlayResult());
+        for (int i = 0; i < inputString.length; i++) {
+            assertThat(racingCarGroup.getCars().get(i).getPosition()).isEqualTo(moveDistance);
+        }
     }
 }

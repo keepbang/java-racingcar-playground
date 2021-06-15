@@ -6,10 +6,9 @@ public class RacingGame {
     private RacingCarGroup racingCarGroup;
     private int round;
 
-    public RacingGame(CompetitionInfo info){
-        this.racingCarGroup = new RacingCarGroup(info.getCarNames()
-                .split(","));
-        this.round = info.getRound();
+    public RacingGame(String inputString, int round){
+        this.racingCarGroup = new RacingCarGroup(inputString.split(","));
+        this.round = round;
     }
 
     public String racingStart(){

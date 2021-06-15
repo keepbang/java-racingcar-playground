@@ -24,4 +24,6 @@ public class RacingCar extends Car{
             throw new IllegalArgumentException("자동차의 이름이 5자를 초과합니다.");
         }
     }
+
+
 }

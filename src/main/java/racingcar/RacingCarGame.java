@@ -1,6 +1,5 @@
 package racingcar;
 
-import racingcar.model.CompetitionInfo;
 import racingcar.model.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -16,9 +15,7 @@ public class RacingCarGame {
 
         System.out.print(System.lineSeparator());
 
-        CompetitionInfo competitionInfo = new CompetitionInfo(carNames, round);
-
-        RacingGame racingGame = new RacingGame(competitionInfo);
+        RacingGame racingGame = new RacingGame(carNames, round);
 
         OutputView.gameResult();
         OutputView.gameRoundResult(racingGame.racingStart());

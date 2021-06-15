@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class RacingCarGroup implements Racing{
+    private final int MOVE_BOUND = 2;
 
     private List<RacingCar> cars = new ArrayList<>();
 
@@ -17,10 +18,10 @@ public class RacingCarGroup implements Racing{
 
     @Override
     public void play() {
-        this.cars.forEach(racingCar -> racingCar.move(this.getRandomNumber()));
+        this.cars.forEach(racingCar -> racingCar.move(this.getDistance()));
     }
 
-    private int getRandomNumber(){
+    public int getDistance(){
         return new Random().nextInt(MOVE_BOUND);
     }
 

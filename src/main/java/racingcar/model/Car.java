@@ -1,6 +1,6 @@
 package racingcar.model;
 
-public class Car {
+public class Car implements Movable {
 
     private final String name;
     private int position;
@@ -10,16 +10,17 @@ public class Car {
         this.position = 0;
     }
 
-    public void move(int distance){
-        this.position += distance;
-    }
-
     public int getPosition(){
         return this.position;
     }
 
     public String getName(){
         return this.name;
+    }
+
+    @Override
+    public void move(int distance){
+        this.position += distance;
     }
 
 
